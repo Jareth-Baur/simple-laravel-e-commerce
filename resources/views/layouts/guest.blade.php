@@ -19,7 +19,7 @@
         /* Additional Custom Styles */
         body {
             animation: fadeIn 0.5s ease-in-out;
-            background: url('{{ asset('img/bg.jpg') }}') no-repeat center center fixed; /* Background image */
+            background: linear-gradient(135deg,rgb(5, 5, 5),rgb(126, 120, 120));
             background-size: cover;
             color: white; /* Change text color to white */
         }
@@ -37,7 +37,7 @@
         .card {
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            background-color: rgba(0, 0, 0, 0.7); /* Darker transparent background for card */
+            background: linear-gradient(135deg,rgb(214, 200, 200),rgb(126, 120, 120));
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             color: white; /* Ensure text inside card is white */
         }
@@ -69,9 +69,9 @@
 <body class="font-sans text-gray-900 antialiased">
     <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
         <div class="flex justify-center items-center mb-4">
-            <a href="/">
+            <!-- <a href="/">
                 <img src="{{ asset('img/transpalogo.png') }}" alt="Logo" class="w-20 h-20 logo" />
-            </a>
+            </a> -->
         </div>
 
         <div class="w-full sm:max-w-md mt-6 px-6 py-4 card">

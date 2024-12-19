@@ -11,8 +11,9 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f4f8;
-            background-image: url('https://www.transparenttextures.com/patterns/snowflakes.png'); /* Christmas-themed background */
+            background-color: #f8f9fa;
+            background-image: url('https://www.transparenttextures.com/patterns/asfalt-light.png');
+            /* Subtle gray pattern */
         }
 
         .sidebar {
@@ -20,51 +21,63 @@
         }
 
         .sidebar-item:hover {
-            background-color: rgba(255, 0, 0, 0.2); /* Light red hover effect */
+            background-color: #6c757d;
+            /* Medium gray hover effect */
         }
 
         .sidebar-item.active {
-            background-color: rgba(34, 193, 195, 0.2); /* Active item green color */
+            background-color: #adb5bd;
+            /* Light gray for active items */
         }
 
         .sidebar-header {
             font-family: 'Arial', sans-serif;
             font-size: 1.5rem;
-            color: #fff;
+            color:rgb(255, 255, 255);
+            /* Dark gray */
             text-align: center;
         }
 
         .sidebar-item {
-            color: #fff;
+            color: #e9ecef;
+            /* Light text color */
         }
 
         .sidebar-item i {
-            color: #ffdf00; /* Gold icon color for the Christmas theme */
+            color: #ced4da;
+            /* Muted icon color */
         }
 
         .sidebar-item:hover i {
-            color: #fff; /* White icon color when hovered */
+            color: #f8f9fa;
+            /* Bright text color when hovered */
         }
 
-        .bg-christmas {
-            background-color: #d32f2f; /* Christmas Red */
+        .bg-gray-dark {
+            background-color: #343a40;
+            /* Dark gray */
         }
 
-        .bg-green-christmas {
-            background-color: #388e3c; /* Christmas Green */
+        .bg-gray-light {
+            background-color: #adb5bd;
+            /* Light gray */
         }
 
-        .bg-gold-christmas {
-            background-color: #ffdf00; /* Gold color for highlights */
+        .bg-gray-medium {
+            background-color: #6c757d;
+            /* Medium gray */
         }
 
         .card-header {
-            background-color: #388e3c; /* Green header */
-            color: white;
+            background-color: #6c757d;
+            /* Medium gray */
+            color: #f8f9fa;
+            /* Light text color */
         }
 
         .card-body {
-            background-color: #f4f4f9;
+            background-color: #e9ecef;
+            /* Very light gray */
         }
     </style>
 </head>
@@ -74,26 +87,26 @@
     <!-- Sidebar -->
     <div class="flex">
         <!-- Sidebar Navigation -->
-        <aside class="sidebar fixed top-0 left-0 h-screen w-64 bg-gradient-to-b from-red-600 to-green-600 text-white shadow-lg">
+        <aside class="sidebar fixed top-0 left-0 h-screen w-64 bg-gray-dark text-white shadow-lg">
             <div class="p-6">
-                <h2 class="sidebar-header text-2xl font-semibold mb-8 text-red-200">Admin Menu</h2>
+                <h2 class="sidebar-header text-2xl font-semibold mb-8">Admin Menu</h2>
                 <nav>
                     <ul class="space-y-6">
                         <li>
                             <a href="{{ route('admin.dashboard') }}"
-                                class="sidebar-item block py-2 px-4 rounded-md text-white hover:bg-green-500 transition {{ request()->routeIs('admin.dashboard') ? 'bg-green-500' : '' }}">
+                                class="sidebar-item block py-2 px-4 rounded-md text-white hover:bg-gray-medium transition {{ request()->routeIs('admin.dashboard') ? 'bg-gray-medium' : '' }}">
                                 <i class="fas fa-tachometer-alt sidebar-icon mr-3"></i> Dashboard
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('admin.products.index') }}"
-                                class="sidebar-item block py-2 px-4 rounded-md text-white hover:bg-green-500 transition {{ request()->routeIs('admin.products.index') ? 'bg-green-500' : '' }}">
+                                class="sidebar-item block py-2 px-4 rounded-md text-white hover:bg-gray-medium transition {{ request()->routeIs('admin.products.index') ? 'bg-gray-medium' : '' }}">
                                 <i class="fas fa-cogs sidebar-icon mr-3"></i> Products
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('admin.allorders') }}"
-                                class="sidebar-item block py-2 px-4 rounded-md text-white hover:bg-green-500 transition {{ request()->routeIs('admin.allorders') ? 'bg-green-500' : '' }}">
+                                class="sidebar-item block py-2 px-4 rounded-md text-white hover:bg-gray-medium transition {{ request()->routeIs('admin.allorders') ? 'bg-gray-medium' : '' }}">
                                 <i class="fas fa-list-ul sidebar-icon mr-3"></i> View All Orders
                             </a>
                         </li>
@@ -101,7 +114,7 @@
                             <form action="{{ route('admin.logout') }}" method="POST" id="logout-form">
                                 @csrf
                                 <button type="button" onclick="document.getElementById('logout-form').submit();"
-                                    class="sidebar-item block w-full text-left py-2 px-4 rounded-md text-white hover:bg-red-600 transition bg-red-500">
+                                    class="sidebar-item block w-full text-left py-2 px-4 rounded-md text-white hover:bg-gray-medium transition bg-gray-medium">
                                     <i class="fas fa-sign-out-alt sidebar-icon mr-3"></i> Logout
                                 </button>
                             </form>
@@ -114,8 +127,9 @@
         <!-- Main Content -->
         <div class="flex-1 ml-64 p-8">
             <!-- Header -->
-            <header class="bg-white p-6 rounded-lg shadow-md mb-8 border border-gray-200 flex items-center justify-center">
-                <h1 class="text-4xl font-bold text-red-600">@yield('title', 'Admin Dashboard')</h1>
+            <header
+                class="bg-white p-6 rounded-lg shadow-md mb-8 border border-gray-200 flex items-center justify-center">
+                <h1 class="text-4xl font-bold text-gray-700">@yield('title', 'Admin Dashboard')</h1>
             </header>
 
             <!-- Dashboard Content -->

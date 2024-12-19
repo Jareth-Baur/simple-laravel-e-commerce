@@ -5,12 +5,14 @@
 <style>
     body {
         font-family: 'Arial', sans-serif;
-        background: linear-gradient(135deg, #ffefdb, #e3f2fd); /* Soft Christmas gradient */
+        background: linear-gradient(135deg, #ffefd5, #cfe2f3);
+        /* Subtle Christmas gradient */
         padding: 20px;
     }
 
     h1 {
-        color: #b30000; /* Christmas Red */
+        color: #b30000;
+        /* Christmas Red */
         text-align: center;
         margin-bottom: 20px;
         font-size: 2.5rem;
@@ -20,19 +22,22 @@
         width: 100%;
         border-collapse: collapse;
         margin-top: 20px;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow for table */
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        /* Soft shadow */
         border-radius: 8px;
         overflow: hidden;
     }
 
     thead {
-        background-color: #28a745; /* Christmas Green */
+        background-color: #28a745;
+        /* Christmas Green */
         color: #fff;
         text-transform: uppercase;
         font-weight: bold;
     }
 
-    th, td {
+    th,
+    td {
         padding: 15px;
         text-align: left;
         border: 1px solid #ddd;
@@ -43,7 +48,8 @@
     }
 
     tr:hover {
-        background-color: #ffebcd; /* Light festive color */
+        background-color: #fff5e1;
+        /* Soft festive color */
         cursor: pointer;
     }
 
@@ -54,10 +60,26 @@
         text-transform: capitalize;
     }
 
-    .badge.bg-warning { background-color: #ffc107; color: #212529; }
-    .badge.bg-success { background-color: #28a745; color: #fff; }
-    .badge.bg-danger { background-color: #dc3545; color: #fff; }
-    .badge.bg-secondary { background-color: #6c757d; color: #fff; }
+    .badge.bg-warning {
+        background-color: #f1c40f;
+        color: #212529;
+    }
+
+    /* Subtle yellow */
+    .badge.bg-success {
+        background-color: #27ae60;
+        color: #fff;
+    }
+
+    .badge.bg-danger {
+        background-color: #e74c3c;
+        color: #fff;
+    }
+
+    .badge.bg-secondary {
+        background-color: #95a5a6;
+        color: #fff;
+    }
 
     .actions a {
         display: inline-block;
@@ -76,7 +98,8 @@
     }
 
     button {
-        background-color: #dc3545; /* Red delete button */
+        background-color: #dc3545;
+        /* Red delete button */
         border: none;
         padding: 5px 10px;
         border-radius: 5px;
@@ -97,7 +120,10 @@
 
     /* Responsive Design */
     @media (max-width: 768px) {
-        table, th, td {
+
+        table,
+        th,
+        td {
             font-size: 14px;
             padding: 10px;
         }
@@ -135,11 +161,11 @@
                             <td>₱{{ number_format($item->price * $item->quantity, 2) }}</td>
                             <td>
                                 <span class="badge 
-                                    @if($order->status == 'Pending') bg-warning 
-                                    @elseif($order->status == 'Completed') bg-success 
-                                    @elseif($order->status == 'Cancelled') bg-danger 
-                                    @else bg-secondary 
-                                    @endif">
+                                                @if($order->status == 'Pending') bg-warning 
+                                                @elseif($order->status == 'Completed') bg-success 
+                                                @elseif($order->status == 'Cancelled') bg-danger 
+                                                    @else bg-secondary 
+                                                @endif">
                                     {{ $order->status ?? 'N/A' }}
                                 </span>
                             </td>

@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-gradient-to-r from-red-600 to-green-500 shadow-md border-b border-gray-200">
+<nav x-data="{ open: false }" class="bg-gradient-to-r from-gray-600 to-gray-400 shadow-md border-b border-gray-200">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16 items-center">
@@ -7,8 +7,8 @@
                 <!-- Logo -->
                 <div class="shrink-0">
                     <a href="{{ route('dashboard') }}" class="text-white font-bold text-2xl flex items-center">
-                        <i class="fas fa-gift mr-3 text-blue-400"></i> <!-- Christmas Gift Icon -->
-                        <span class="hidden md:block">Holiday Fitness Store</span>
+                        <!-- <i class="fas fa-gift mr-3 text-blue-400"></i> Christmas Gift Icon -->
+                        <span class="hidden md:block">Simple E-Commerce Vape Shop</span>
                     </a>
                 </div>
 

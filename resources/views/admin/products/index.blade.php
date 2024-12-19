@@ -5,12 +5,14 @@
 <style>
     body {
         font-family: 'Arial', sans-serif;
-        background: linear-gradient(135deg, #ffebcd, #fff5e1); /* Soft Christmas themed gradient */
+        background: linear-gradient(135deg, #ffe4e1, #f1f8e9);
+        /* Soft and lively Christmas themed gradient */
         padding: 20px;
     }
 
     h1 {
-        color: #b30000; /* Christmas Red */
+        color: #ff6347;
+        /* Vibrant Tomato Red for the header */
         text-align: center;
         margin-bottom: 20px;
         font-size: 2.5rem;
@@ -20,7 +22,8 @@
         display: inline-block;
         margin: 10px 0;
         padding: 12px 20px;
-        background-color: #2e8b57; /* Christmas Green */
+        background-color: #343a40;
+        /* Lively Christmas Green */
         color: #fff;
         border-radius: 5px;
         text-decoration: none;
@@ -28,7 +31,8 @@
     }
 
     a:hover {
-        background-color: #006400; /* Darker Green on hover */
+        background-color: #6c757d;
+        /* Darker Green on hover */
         transform: scale(1.05);
     }
 
@@ -48,11 +52,13 @@
     }
 
     thead {
-        background-color: #b30000; /* Christmas Red */
+        background-color: #ff6347;
+        /* Vibrant Tomato Red for the header */
         color: #fff;
     }
 
-    th, td {
+    th,
+    td {
         padding: 15px;
         text-align: left;
         border: 1px solid #ddd;
@@ -63,12 +69,14 @@
     }
 
     tr:hover {
-        background-color: #e0f7fa; /* Light Blue on hover */
+        background-color: #ffeb3b;
+        /* Bright Yellow on hover */
     }
 
     button {
         padding: 8px 12px;
-        background-color: #dc3545; /* Red background for delete button */
+        background-color: #ff4500;
+        /* Vibrant Red background for delete button */
         border: none;
         border-radius: 5px;
         color: #fff;
@@ -77,7 +85,8 @@
     }
 
     button:hover {
-        background-color: #c82333; /* Darker Red on hover */
+        background-color: #c0392b;
+        /* Darker Red on hover */
         transform: scale(1.05);
     }
 
@@ -100,13 +109,17 @@
     }
 
     .fa-tree {
-        color: #228b22; /* Christmas Tree Green */
+        color: #228b22;
+        /* Christmas Tree Green */
         font-size: 1.5rem;
     }
 
     /* Responsive Design */
     @media (max-width: 768px) {
-        table, th, td {
+
+        table,
+        th,
+        td {
             font-size: 14px;
             padding: 10px;
         }
@@ -116,10 +129,9 @@
             font-size: 14px;
         }
     }
-
 </style>
 
-<h1><i class="fa fa-tree"></i> Products</h1>
+<h1>Products</h1>
 <a href="{{ route('admin.products.create') }}"><i class="fa fa-gift"></i> Add Product</a>
 
 @if(session('success'))

@@ -15,9 +15,8 @@
 
     <style>
         body {
-            background-color: #f0f8ff; /* Light Snowy Blue background */
+            background-color: #f8f9fa; /* Light background color */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-image: url('https://www.transparenttextures.com/patterns/snowflakes.png'); /* Snowflake pattern */
         }
 
         .dashboard-container {
@@ -26,7 +25,7 @@
         }
 
         .card-header {
-            background-color: #d32f2f; /* Christmas Red */
+            background-color: #f44336; /* Lively Red */
             color: white;
             font-weight: bold;
             text-align: center;
@@ -48,7 +47,7 @@
 
         footer {
             padding: 15px;
-            background-color: #d32f2f; /* Christmas Red */
+            background-color: #f44336; /* Lively Red */
             color: white;
             text-align: center;
             margin-top: 30px;
@@ -61,7 +60,7 @@
         .chart-container {
             padding: 20px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            background-color: white;
+            background-color: #ffffff;
             border-radius: 10px;
             margin-top: 20px;
         }
@@ -85,15 +84,31 @@
             padding: 30px;
         }
         
-        /* Christmas Green for buttons */
-        .btn-christmas {
-            background-color: #388e3c; /* Green */
+        /* Vivid Green for buttons */
+        .btn-vivid {
+            background-color: #4caf50; /* Green */
             color: white;
             border: none;
         }
 
-        .btn-christmas:hover {
-            background-color: #2c6e2f; /* Darker Green */
+        .btn-vivid:hover {
+            background-color: #388e3c; /* Darker Green */
+        }
+
+        /* Bright Yellow for active elements */
+        .btn-active {
+            background-color: #ffeb3b; /* Bright Yellow */
+            color: black;
+            border: none;
+        }
+
+        .btn-active:hover {
+            background-color: #fbc02d; /* Darker Yellow */
+        }
+
+        /* Vivid Blue for hover effects */
+        .btn-vivid:hover {
+            background-color: #1e88e5; /* Vivid Blue */
         }
         
     </style>
@@ -101,7 +116,7 @@
 
 <body>
     <div class="dashboard-container">
-        <h4 class="font-weight-bold text-xl mb-4 text-center" style="color: #d32f2f;">Sales Report</h4>
+        <h4 class="font-weight-bold text-xl mb-4 text-center" style="color: #f44336;">Sales Report</h4>
 
         <!-- Most Sold Product and Most Favorite Product -->
         <div class="row">
@@ -176,14 +191,14 @@
         // Most Sold Product Chart (Bar Chart)
         var soldChartCtx = document.getElementById('soldChart').getContext('2d');
         var soldChart = new Chart(soldChartCtx, {
-            type: 'bar', // Changed from 'line' to 'bar'
+            type: 'bar',
             data: {
                 labels: @json($orderedProducts->pluck('name')), 
                 datasets: [{
                     label: 'Quantity Sold',
                     data: @json($orderedProducts->pluck('order_items_sum_quantity')),
-                    backgroundColor: 'rgba(255, 99, 132, 0.6)', // Red color
-                    borderColor: 'rgba(255, 99, 132, 1)', 
+                    backgroundColor: 'rgba(66, 133, 244, 0.6)', // Bright Blue
+                    borderColor: 'rgba(66, 133, 244, 1)', 
                     borderWidth: 1
                 }]
             },
@@ -214,18 +229,18 @@
                     label: 'Number of Favorites',
                     data: @json($favoriteProducts->pluck('favorited_by_count')),
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.6)',
-                        'rgba(54, 162, 235, 0.6)',
                         'rgba(255, 159, 64, 0.6)',
                         'rgba(75, 192, 192, 0.6)',
-                        'rgba(153, 102, 255, 0.6)'
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)'
                     ],
                     borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
                         'rgba(255, 159, 64, 1)',
                         'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)'
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)'
                     ],
                     borderWidth: 1
                 }]

@@ -1,22 +1,23 @@
 <x-app-layout>
-    
-        <!-- Christmas themed header -->
-        <div class="d-flex justify-content-between align-items-center w-100 p-3">
-            <!-- Logo -->
-            <div class="d-flex align-items-center">
-                <a href="{{ route('dashboard') }}" class="d-flex align-items-center">
-                    <i class="fas fa-gift mr-2"></i> <!-- Gift Icon -->
-                </a>
-            </div>
 
-            <!-- Search Bar -->
-            <div class="search-bar-container mx-auto" style="max-width: 600px;">
-                <input type="text" id="product-search" class="form-control form-control-lg rounded-pill" placeholder="Search for Products" aria-label="Search">
-            </div>
-
-                
+    <!-- Christmas themed header -->
+    <div class="d-flex justify-content-between align-items-center w-100 p-3">
+        <!-- Logo -->
+        <div class="d-flex align-items-center">
+            <a href="{{ route('dashboard') }}" class="d-flex align-items-center">
+                <i class="fas fa-gift mr-2"></i> <!-- Gift Icon -->
+            </a>
         </div>
-    
+
+        <!-- Search Bar -->
+        <div class="search-bar-container mx-auto" style="max-width: 600px;">
+            <input type="text" id="product-search" class="form-control form-control-lg rounded-pill"
+                placeholder="Search for Products" aria-label="Search">
+        </div>
+
+
+    </div>
+
 
     <!-- Main Content Area -->
     <div class="py-5">
@@ -33,8 +34,11 @@
                                 <label for="category-filter" class="form-label">Category:</label>
                                 <select id="category-filter" class="form-select form-select-lg">
                                     <option value="All Category">All Category</option>
-                                    <option value="Gym Equipment">Gym Equipment</option>
-                                    <option value="Gym Supplement">Gym Supplement</option>
+                                    <option value="Starter Kits">Starter Kits</option>
+                                    <option value="dvanced Kits">Advanced Kits</option>
+                                    <option value="E-Liquids">E-Liquids</option>
+                                    <option value="Pod Systems">Pod Systems</option>
+                                    <option value="Accessories">Accessories</option>
                                 </select>
                             </div>
 
@@ -54,37 +58,43 @@
 
                 <!-- Product Listing -->
                 <div class="col-md-9">
-                    <h3 class="mb-4 text-center">Christmas Specials - Available Products</h3>
-                    <div class="row" id="product-list">
+                    <h3 class="mb-4 text-center text-primary">Available Products</h3>
+                    <div class="row g-4" id="product-list">
                         @foreach($products as $product)
                             @if($product->quantity > 0)
-                                <div class="col-md-4 mb-4 product-item" data-name="{{ $product->name }}" data-category="{{ $product->category }}">
-                                    <div class="card h-100 shadow-lg">
-                                        <img src="{{ asset('images/products/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}">
+                                <div class="col-sm-6 col-md-4 product-item" data-name="{{ $product->name }}"
+                                    data-category="{{ $product->category }}">
+                                    <div class="card h-100 shadow-sm border-0 rounded-3">
+                                        <div class="card-img-top position-relative">
+                                            <img src="{{ asset('images/products/' . $product->image) }}"
+                                                class="img-fluid rounded-top" alt="{{ $product->name }}">
+                                            <!-- Favorite Icon Overlay -->
+                                            <button type="button"
+                                                class="btn btn-link position-absolute top-0 end-0 mt-2 me-2 text-danger p-0 favorite-icon"
+                                                data-product-id="{{ $product->id }}">
+                                                <i class="fas fa-heart fa-lg"></i>
+                                            </button>
+                                        </div>
                                         <div class="card-body d-flex flex-column">
-                                            <!-- Product Title and Favorite Icon -->
-                                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                                <h5 class="card-title mb-0">{{ $product->name }}</h5>
-                                                <button type="button" class="btn btn-link p-0 favorite-icon" data-product-id="{{ $product->id }}">
-                                                    <i class="fas fa-heart fa-lg text-muted"></i>
-                                                </button>
+                                            <h5 class="card-title text-center text-dark">{{ $product->name }}</h5>
+                                            <p class="text-muted text-center mb-1">Category: {{ $product->category }}</p>
+                                            <p class="text-muted small text-center">{{ Str::limit($product->description, 70) }}
+                                            </p>
+                                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                                <span class="badge bg-success">₱{{ number_format($product->price, 2) }}</span>
+                                                <span class="badge bg-secondary">Stock: {{ $product->quantity }}</span>
                                             </div>
-                                            
-                                            <!-- Display Product Category -->
-                                            <p class="text-muted mb-2">Category: {{ $product->category }}</p>
-
-                                            <p class="card-text text-muted">{{ Str::limit($product->description, 70) }}</p>
-                                            <p class="font-weight-bold">₱{{ number_format($product->price, 2) }}</p>
-                                            <p class="text-muted">Stock: <span id="product-stock-{{ $product->id }}">{{ $product->quantity }}</span></p>
-
-                                            <!-- Add to Cart and Buy Now Text (No button design) -->
-                                            <div class="d-flex justify-content-between mt-auto">
-                                                <span class="add-to-cart-text" data-product-id="{{ $product->id }}">
+                                        </div>
+                                        <div class="card-footer bg-white border-0 mt-auto">
+                                            <div class="d-flex justify-content-between">
+                                                <button class="btn btn-outline-primary btn-sm w-50 me-2 add-to-cart-text"
+                                                    data-product-id="{{ $product->id }}">
                                                     <i class="fas fa-cart-plus"></i> Add to Cart
-                                                </span>
-                                                <span class="buy-now-text" data-product-id="{{ $product->id }}">
+                                                </button>
+                                                <button class="btn btn-outline-success btn-sm w-50 buy-now-text"
+                                                    data-product-id="{{ $product->id }}">
                                                     <i class="fas fa-credit-card"></i> Buy Now
-                                                </span>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -94,9 +104,10 @@
                     </div>
 
                     @if($products->isEmpty())
-                        <p class="text-center">No products available at the moment.</p>
+                        <p class="text-center text-muted mt-4">No products available at the moment.</p>
                     @endif
                 </div>
+
             </div>
         </div>
     </div>
@@ -123,6 +134,7 @@
             0% {
                 transform: translateX(0) translateY(0);
             }
+
             100% {
                 transform: translateX(100px) translateY(100vh);
             }
@@ -130,23 +142,23 @@
     </style>
 
     <script>
-        // Snow Effect JavaScript
-        function generateSnowflakes() {
-            let snowflakeContainer = document.body;
+        // // Snow Effect JavaScript
+        // function generateSnowflakes() {
+        //     let snowflakeContainer = document.body;
 
-            for (let i = 0; i < 100; i++) {
-                let snowflake = document.createElement("div");
-                snowflake.classList.add("snowflake");
-                snowflake.innerHTML = "❄️";
-                snowflake.style.fontSize = `${Math.random() * 10 + 10}px`;
-                snowflake.style.left = `${Math.random() * 100}%`;
-                snowflake.style.animationDuration = `${Math.random() * 3 + 5}s`;
-                snowflake.style.animationDelay = `${Math.random() * 5}s`;
-                snowflakeContainer.appendChild(snowflake);
-            }
-        }
+        //     for (let i = 0; i < 100; i++) {
+        //         let snowflake = document.createElement("div");
+        //         snowflake.classList.add("snowflake");
+        //         snowflake.innerHTML = "❄️";
+        //         snowflake.style.fontSize = `${Math.random() * 10 + 10}px`;
+        //         snowflake.style.left = `${Math.random() * 100}%`;
+        //         snowflake.style.animationDuration = `${Math.random() * 3 + 5}s`;
+        //         snowflake.style.animationDelay = `${Math.random() * 5}s`;
+        //         snowflakeContainer.appendChild(snowflake);
+        //     }
+        // }
 
-        generateSnowflakes();
+        // generateSnowflakes();
     </script>
 
 </x-app-layout>
@@ -157,11 +169,11 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"></script>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         // Product search functionality
-        $('#product-search').on('input', function() {
+        $('#product-search').on('input', function () {
             var searchText = $(this).val().toLowerCase();
-            $('.product-item').each(function() {
+            $('.product-item').each(function () {
                 var productName = $(this).data('name').toLowerCase();
                 if (productName.includes(searchText)) {
                     $(this).show();
@@ -172,9 +184,9 @@
         });
 
         // Category filter functionality
-        $('#category-filter').on('change', function() {
+        $('#category-filter').on('change', function () {
             var selectedCategory = $(this).val();
-            $('.product-item').each(function() {
+            $('.product-item').each(function () {
                 var productCategory = $(this).data('category');
                 if (selectedCategory === 'All Category' || productCategory === selectedCategory) {
                     $(this).show();
@@ -185,11 +197,11 @@
         });
 
         // Sorting functionality
-        $('#sort-products').on('change', function() {
+        $('#sort-products').on('change', function () {
             var sortOrder = $(this).val();
             var productList = $('#product-list');
             var products = productList.children('.product-item').get();
-            products.sort(function(a, b) {
+            products.sort(function (a, b) {
                 var nameA = $(a).data('name').toUpperCase();
                 var nameB = $(b).data('name').toUpperCase();
                 var priceA = parseFloat($(a).find('.font-weight-bold').text().replace('₱', '').replace(',', ''));
@@ -204,13 +216,13 @@
                     return priceB - priceA;
                 }
             });
-            $.each(products, function(index, item) {
+            $.each(products, function (index, item) {
                 productList.append(item);
             });
         });
 
         // Handle Add to Cart click event
-        $(document).on('click', '.add-to-cart-text', function() {
+        $(document).on('click', '.add-to-cart-text', function () {
             var productId = $(this).data('product-id');
             $.ajax({
                 url: "{{ route('cart.add', '') }}/" + productId,
@@ -218,26 +230,26 @@
                 data: {
                     _token: "{{ csrf_token() }}",
                 },
-                success: function(response) {
+                success: function (response) {
                     $('#cart-count').text(response.cart_count);
                     var currentStock = $('#product-stock-' + productId).text();
                     $('#product-stock-' + productId).text(currentStock - 1);
                     alert("Product added to cart!");
                 },
-                error: function(xhr) {
+                error: function (xhr) {
                     alert(xhr.responseJSON.error || "Error adding product to cart.");
                 }
             });
         });
 
         // Handle Buy Now click event
-        $(document).on('click', '.buy-now-text', function() {
+        $(document).on('click', '.buy-now-text', function () {
             var productId = $(this).data('product-id');
             window.location.href = "{{ route('cart.view') }}";
         });
 
         // Favorite icon toggle functionality
-        $(document).on('click', '.favorite-icon', function() {
+        $(document).on('click', '.favorite-icon', function () {
             var icon = $(this).find('i');
             var productId = $(this).data('product-id');
             icon.toggleClass('text-danger'); // Change color on toggle
@@ -250,10 +262,11 @@
                     _token: "{{ csrf_token() }}",
                     product_id: productId
                 },
-                success: function(response) {
+                success: function (response) {
                     alert(response.message);
                 }
             });
         });
+
     });
 </script>
